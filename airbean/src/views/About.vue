@@ -28,7 +28,7 @@ export default {
 .about {
   background-color: #F3E4E1;
   width: 100%;
-  height: 130%;
+  height: 150%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -48,6 +48,9 @@ export default {
 
   h1{
     text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 50,4px;
   }
   p{
     margin: 15px 0px 15px 0px;
