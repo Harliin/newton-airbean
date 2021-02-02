@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Landing from '../views/Landing'
 import Menu from '../views/Menu'
 import About from '../views/About'
+import Profile from '../views/Profile'
+import Status from '../views/Status'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +25,14 @@ const routes = [
   {
     path: '/menu',
     component: Menu
+  },
+  {
+    path: '/profile',
+    component: Profile
+  },
+  {
+    path: '/status',
+    component: Status
   }
 ]
 
