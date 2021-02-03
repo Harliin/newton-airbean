@@ -110,22 +110,31 @@ export default {
             color: #2F2926;
             line-height: 120%;
         }
-        .total{
+        .total-container{
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 7rem;
+            color: #2F2926;
+            .total{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
 
-            h3{
-                font-size: 23px;
-                line-height: 120%;
-                font-weight: bold;
-            }
-            span{
-                width: 166px;
-                height: 0px;
-                border: 1px dashed rgba(0, 0, 0, 0.4);
-                align-self: flex-end;
+                h3{
+                    font-size: 23px;
+                    line-height: 120%;
+                    font-weight: bold;
+                }
+                span{
+                    width: 166px;
+                    height: 0px;
+                    border: 1px dashed rgba(0, 0, 0, 0.4);
+                    align-self: flex-end;
+                    margin: 0px 2px 4px 2px
+                }
             }
         }
         > button{
@@ -138,7 +147,9 @@ export default {
             line-height: 120%;
             color: white;
             border: none;
+            margin-bottom: 2rem;
         }
+        
 
     }
 
