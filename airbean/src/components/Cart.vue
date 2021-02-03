@@ -8,7 +8,7 @@
     <section v-if="cartOpen" class="cart-container">
         <span class="arrow"></span>
         <h2>Din beställning</h2>
-        <div>nadn</div>
+        <div><CartItem v-for="item in cart" :key="item.id" :cart="item"/></div>
         <div class="total-container">
             <div class="total">
                 <h3>Total</h3>
@@ -23,10 +23,17 @@
 </template>
 
 <script>
+import CartItem from '@/components/CartItem'
 export default {
+    components: {CartItem},
     data(){return{
         cartOpen: false
-    }}
+    }},
+    computed: {
+        cart() {
+            return this.$store.state.cartList
+        }
+    }
 
 }
 </script>

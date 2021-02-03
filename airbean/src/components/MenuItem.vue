@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-      <button class="item-add"><img src="~@/assets/add.svg" alt="kunde inte hitta bilden"></button>
+      <button class="item-add" v-on:click="buyItem"><img src="~@/assets/add.svg" alt="kunde inte hitta bilden"></button>
       <div class="item-info">
           <h4>{{menu.title}}</h4>
           <p>{{menu.desc}}</p>
@@ -13,6 +13,11 @@
 export default {
     props:{
         menu: Object
+    },
+    methods: {
+        buyItem() {
+            this.$store.commit('storeItem', this.menu)
+        }
     }
 
 }
