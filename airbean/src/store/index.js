@@ -9,7 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     saveMenu(state, data){
-      state.menu = data
+      state.menu = data.menu
     }
   },
   actions: {

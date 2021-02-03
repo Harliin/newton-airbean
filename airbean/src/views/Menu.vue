@@ -1,10 +1,11 @@
 <template>
   <div class="Menu">
       <Navitem class="navitem"/>
+      <Cart class="shopping-cart"/>
       <!-- <MenuItem class="menu-item" v-for="item in Menu" :key="item.id" :menu="item"/> -->
       <section class="menu-item">
         <h2>Meny</h2>
-        <MenuItem v-for="item in Menu.menu" :key="item.id" :menu="item"/>
+        <MenuItem v-for="item in Menu" :key="item.id" :menu="item"/>
       </section>
   </div>
 </template>
@@ -12,11 +13,13 @@
 <script>
 import Navitem from '@/components/Navitem'
 import MenuItem from '@/components/MenuItem'
+import Cart from '@/components/Cart'
 export default {
   components:
   {
      Navitem,
-     MenuItem
+     MenuItem,
+     Cart
   },
   data(){return{
   }},
@@ -61,5 +64,8 @@ export default {
 }
 .navitem{
   align-self: flex-start;
+}
+.shopping-cart{
+  align-self: flex-end;
 }
 </style>
