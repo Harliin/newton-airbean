@@ -7,6 +7,17 @@
     </button>
     <section v-if="cartOpen" class="cart-container">
         <span class="arrow"></span>
+        <h2>Din beställning</h2>
+        <div>nadn</div>
+        <div class="total-container">
+            <div class="total">
+                <h3>Total</h3>
+                <span></span>
+                <h3>343 kr</h3>
+            </div>
+            <p>inkl moms + drönarleverans</p>
+        </div>
+        <button>Take my money!</button>
     </section>
   </div>
 </template>
@@ -62,7 +73,7 @@ export default {
         }
     }
     .cart-container{
-        height: 90vh;
+        height: 80vh;
         width: 90vw;
         background-color: #FFFFFF;
         position: relative;
@@ -72,6 +83,8 @@ export default {
         margin-top: 17%;
         display: flex;
         justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
 
         .arrow{
             width: 0;
@@ -82,6 +95,42 @@ export default {
             position: absolute;
             right: 3%;
             top: -2%;
+        }
+
+        h2{
+            font-size: 32px;
+            font-weight: bold;
+            color: #2F2926;
+            line-height: 120%;
+        }
+        .total{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+            h3{
+                font-size: 23px;
+                line-height: 120%;
+                font-weight: bold;
+            }
+            span{
+                width: 166px;
+                height: 0px;
+                border: 1px dashed rgba(0, 0, 0, 0.4);
+                align-self: flex-end;
+            }
+        }
+        > button{
+            width: 248px;
+            height: 55px;
+            background: #2F2926;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 120%;
+            color: white;
+            border: none;
         }
 
     }
