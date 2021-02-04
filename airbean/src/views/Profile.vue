@@ -9,20 +9,28 @@
         </div>
 
         <h3>{{namn}}</h3>
-        <p>{{epost}}</p>
+        <p class="epost">{{epost}}</p>
 
         <div class="order-list">
           <h3>Orderhistorik</h3>
           
           <div v-bind:key="order.orderNr" v-for="order in doneOrders">
             <div class="bar">
-              <p> {{order.orderNr}} <br>Total ordersumma</p><br>
-              <p> {{order.date}} <br> {{order.totalPrice}} kr</p>
+              <div class="first">
+                <p>{{order.orderNr}}<p>
+                <p>{{order.date}}</p>
+              </div>
+              <div class="second">
+                <p>Total ordersumma</p>
+                <p>{{order.totalPrice}} kr</p>
+              </div>
             </div>
-            <hr>
+            <hr class="line">
           </div>
           <hr>
-          <p>Totalt spenderat {{totalSpent}} kr</p>
+          <div class="last-part">
+            <p>Totalt spenderat</p> <p>{{totalSpent}} kr</p>
+          </div>
         </div>
       </div>
 
@@ -64,19 +72,19 @@ export default {
       showSignup: true,
         profileData: [
           {
-          orderNo: '#ANP4342342F',
-          orderDate: '20/03/03',
-          orderSum: 323
+          orderNr: '#ANP4342342F',
+          date: '20/03/03',
+          totalPrice: 323
           },
           {
-          orderNo: '#FKN343225F',
-          orderDate: '20/03/03',
-          orderSum: 533
+          orderNr: '#FKN343225F',
+          date: '20/03/03',
+          totalPrice: 533
           },
           {
-          orderNo: '#EF4324234G',
-          orderDate: '20/03/04',
-          orderSum: 234
+          orderNr: '#EF4324234G',
+          date: '20/03/04',
+          totalPrice: 234
           }
         ]
     }},
@@ -150,21 +158,37 @@ export default {
     height: 100px;
     width: 80px;
     border-radius: 50px;
-    
   }
-  .profile-page {
-    color: #FFFFFF;
-  } 
 }
 
+.epost {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.profile-page {
+    color: #FFFFFF;
+    width: 90%;
+  } 
 .order-list {
   display: flex;
   flex-direction: column;
   color: white;
+  width: 100%;
   >h3 {
     justify-self: flex-start;
+    align-self: flex-start;
     margin-top: 5rem;
+    margin-left: 0rem;
   }
+ > hr {
+   border: 0.1px solid rgba(255, 255, 255, 0.6);
+   height: 0px;
+ }
+}
+
+.line {
+  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 h3 {
@@ -175,12 +199,64 @@ p {
 }
 .bar {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  margin-top: 15px;
 
-  >p {
-    margin-right: 5rem;
-    margin-left: 2rem;
+  
+  > p {
+    justify-self: flex-start;
+    align-self: flex-start;
+    text-align: left;
+
+    
   }
+  > .first {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 120%;
+
+    /* or 17px */
+    > p {
+      font-family: Work Sans;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+  }
+  > .second {
+    display: flex;
+    text-align: right;
+    justify-content: space-between;
+
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 120%;
+
+    /* or 14px */
+    > p {
+      font-family: Work Sans;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.last-part {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  > p {
+      font-family: Work Sans;
+      color: rgba(255, 255, 255, 0.7);
+    }
 }
 </style>
