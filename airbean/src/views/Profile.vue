@@ -14,10 +14,10 @@
         <div class="order-list">
           <h3>Orderhistorik</h3>
           
-          <div v-bind:key="profile.orderNo" v-for="profile in profileData">
+          <div v-bind:key="order.orderNr" v-for="order in doneOrders">
             <div class="bar">
-              <p>{{profile.orderNo}}<br>Total ordersumma</p><br>
-              <p>{{profile.orderDate}}<br>{{profile.orderSum}} kr</p>
+              <p> {{order.orderNr}} <br>Total ordersumma</p><br>
+              <p> {{order.date}} <br> {{order.totalPrice}} kr</p>
             </div>
             <hr>
           </div>
@@ -42,12 +42,16 @@ export default {
       epost() {
         return localStorage.getItem('epost')
       },
-      totalSpent() {
-        let total = 0
-        for (let i = 0; i < this.profileData.length; i++) {
-          total += this.profileData[i].orderSum
-        }
-        return total
+      doneOrders(){
+        return this.$store.state.doneOrders
+      },
+      totalSpent(){
+        let totalprice = 0
+        let orders = this.$store.state.doneOrders
+        orders.forEach(element => {
+          totalprice += element.totalPrice
+        });
+        return totalprice
       }
     },
     created: function () {
@@ -175,7 +179,8 @@ p {
   width: 100%;
 
   >p {
-    
+    margin-right: 5rem;
+    margin-left: 2rem;
   }
 }
 </style>

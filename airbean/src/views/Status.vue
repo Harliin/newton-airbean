@@ -1,10 +1,10 @@
 <template>
   <div class="status">
-      <p>Ordernummer</p>
+      <p>Ordernummer <b>#{{status.orderNr}}</b></p>
       <img src="~@/assets/drone.svg" alt="kunde ej hitta bilden">
       <div class="info">
         <h3>Din beställning är på väg!</h3>
-        <p><b>13</b> minuter</p>
+        <p><b>{{status.eta}}</b> minuter</p>
       </div>
      
       <router-link to="/menu" class="button" tag="button">Ok, cool!</router-link>
@@ -13,7 +13,11 @@
 
 <script>
 export default {
-
+    computed:{
+        status(){
+            return this.$store.state.currentOrder
+        }
+    }
 }
 </script>
 
@@ -30,6 +34,10 @@ export default {
     > p{
         color: white;
         font-size: 16px;
+
+        b{
+            font-weight: 700;
+        }
     }
 
     .info{

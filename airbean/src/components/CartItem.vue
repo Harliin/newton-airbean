@@ -19,8 +19,10 @@ export default {
         cart: Object
     },
     methods: {
-        changeAmount(state) {
-           this.$store.commit("change")
+        changeAmount(choice) {
+            let arr = [choice, this.cart.id]
+            console.log(arr)
+           this.$store.commit("changeAmount", arr)
         }
     }
 }

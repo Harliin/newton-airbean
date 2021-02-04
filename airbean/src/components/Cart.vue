@@ -3,7 +3,7 @@
       
     <button class="cart-button" @click="cartOpen = !cartOpen">
         <img src="~@/assets/bag.svg" alt="No pic">
-        <span class="cart-count">7</span>
+        <span class="cart-count">{{cartCount}}</span>
     </button>
     <section v-if="cartOpen" class="cart-container">
         <span class="arrow"></span>
@@ -13,11 +13,11 @@
             <div class="total">
                 <h3>Total</h3>
                 <span></span>
-                <h3>343 kr</h3>
+                <h3>{{Total}} kr</h3>
             </div>
             <p>inkl moms + drönarleverans</p>
         </div>
-        <button>Take my money!</button>
+        <button @click="sendOrder">Take my money!</button>
     </section>
   </div>
 </template>
@@ -32,6 +32,23 @@ export default {
     computed: {
         cart() {
             return this.$store.state.cartList
+        },
+        Total(){
+            return this.$store.state.totalPrice
+        },
+        cartCount(){
+            let counter = 0
+            let temp = this.$store.state.cartList
+            temp.forEach(element => {
+                counter += element.counter
+            });
+            return counter
+        }
+    },
+    methods:{
+        async sendOrder(){
+            await this.$store.dispatch('order')
+            this.$router.push('/status')
         }
     }
 
