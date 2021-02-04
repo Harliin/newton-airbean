@@ -51,7 +51,10 @@ export default {
         return localStorage.getItem('epost')
       },
       doneOrders(){
-        return this.$store.state.doneOrders
+        let temp = localStorage.getItem('doneOrders')
+        let parsed = JSON.parse(temp)
+        console.log("temp " + parsed.orderNr)
+        return JSON.parse(temp)
       },
       totalSpent(){
         let totalprice = 0

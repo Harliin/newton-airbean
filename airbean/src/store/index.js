@@ -49,6 +49,12 @@ export default new Vuex.Store({
       let currentOrder = {eta: data.eta, orderNr: data.orderNr, totalPrice: state.totalPrice, date: `${tempDate.getFullYear()}/${(tempDate.getMonth()+1)}/${tempDate.getDate()}`}
       state.currentOrder = currentOrder
       state.doneOrders.push(currentOrder)
+      
+      let temp = localStorage.getItem('doneOrders')
+      let tempOrders = [...JSON.parse(temp)]
+      tempOrders.push(currentOrder)
+
+      localStorage.setItem('doneOrders', JSON.stringify(tempOrders))
       state.cartList = []
       state.totalPrice = 0
     }
