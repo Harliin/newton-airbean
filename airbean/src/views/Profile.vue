@@ -52,8 +52,10 @@ export default {
       },
       doneOrders(){
         let temp = localStorage.getItem('doneOrders')
+        if (temp == undefined) return
+        if (temp == '') return
         let parsed = JSON.parse(temp)
-        console.log("temp " + parsed.orderNr)
+        console.log("temp " + parsed)
         return JSON.parse(temp)
       },
       totalSpent(){

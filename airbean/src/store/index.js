@@ -51,7 +51,12 @@ export default new Vuex.Store({
       state.doneOrders.push(currentOrder)
       
       let temp = localStorage.getItem('doneOrders')
-      let tempOrders = [...JSON.parse(temp)]
+      let tempOrders = new Array
+      console.log("doneorders " + temp )
+      if (temp != '' && temp != undefined) {
+        console.log("hello")
+        tempOrders = [...JSON.parse(temp)]
+      }
       tempOrders.push(currentOrder)
 
       localStorage.setItem('doneOrders', JSON.stringify(tempOrders))
