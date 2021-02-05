@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
       
-    <button class="cart-button" @click="cartOpen = !cartOpen">
+    <button class="cart-button" @click="cartOpen = !cartOpen" :class="{disabled : loading == true}">
         <img src="~@/assets/bag.svg" alt="No pic">
         <span class="cart-count">{{cartCount}}</span>
     </button>
@@ -20,9 +20,7 @@
             </div>
             <button @click="sendOrder">Take my money!</button>
         </div>
-        <div class="loader" v-if="loading">
-            <img src="~@/assets/loader.png" alt="kunde inte hitta">
-        </div>
+        <Loader v-if="loading"/>
         
     </section>
   </div>
@@ -30,8 +28,10 @@
 
 <script>
 import CartItem from '@/components/CartItem'
+import Loader from '@/components/Loader'
+
 export default {
-    components: {CartItem},
+    components: {CartItem, Loader},
     data(){return{
         cartOpen: false,
         loading: false
@@ -54,9 +54,9 @@ export default {
     },
     methods:{
         async sendOrder(){
-            this.loader = true
+            this.loading = true
             await this.$store.dispatch('order')
-            this.loader = false
+            this.loading = false
             this.$router.push('/status')
         }
     }
@@ -81,6 +81,12 @@ export default {
         right: 4px;
         background-color: #2F2926;
         box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
+        outline: none;
+
+        &.disabled{
+            pointer-events: none;
+            cursor: not-allowed;
+        }
         
 
         img{
@@ -187,28 +193,6 @@ export default {
                 border: none;
             }
         }
-
-        .loader{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-
-
-            
-
-            img{
-                width: 100px;
-                height: 100px;
-                filter: invert(14%) sepia(1%) saturate(4489%) hue-rotate(334deg) brightness(96%) contrast(2%);
-                
-            }
-
-        }
-        
-
     }
 
 }

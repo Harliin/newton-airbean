@@ -4,7 +4,7 @@
       <img src="~@/assets/drone.svg" alt="kunde ej hitta bilden">
       <div class="info">
         <h3>Din beställning är på väg!</h3>
-        <p><b>{{status.eta}}</b> minuter</p>
+        <p><b>{{eta}}</b> minuter</p>
       </div>
      
       <router-link to="/menu" class="button" tag="button">Ok, cool!</router-link>
@@ -13,11 +13,30 @@
 
 <script>
 export default {
+    data(){return{
+        eta: 0,
+        interval: null
+    }},
     computed:{
         status(){
             return this.$store.state.currentOrder
         }
+    },
+    methods:{
+        calculateEta(){
+            let date = new Date()
+            let millisleft = this.status.endEta - date
+            this.eta = Math.floor(millisleft / 60000)
+        }
+    },
+    beforeMount(){
+        this.calculateEta()
+        this.interval = setInterval(this.calculateEta, 1000)
+    },
+    beforeDestroy(){
+        clearInterval(this.interval)
     }
+    
 }
 </script>
 

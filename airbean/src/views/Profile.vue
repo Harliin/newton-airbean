@@ -13,20 +13,21 @@
 
         <div class="order-list">
           <h3>Orderhistorik</h3>
-          
-          <div v-bind:key="order.orderNr" v-for="order in doneOrders">
-            <div class="bar">
-              <div class="first">
-                <p>{{order.orderNr}}<p>
-                <p>{{order.date}}</p>
+          <section class="orders">
+            <div v-bind:key="order.orderNr" v-for="order in doneOrders">
+              <div class="bar">
+                <div class="first">
+                  <p>{{order.orderNr}}<p>
+                  <p>{{order.date}}</p>
+                </div>
+                <div class="second">
+                  <p>Total ordersumma</p>
+                  <p>{{order.totalPrice}} kr</p>
+                </div>
               </div>
-              <div class="second">
-                <p>Total ordersumma</p>
-                <p>{{order.totalPrice}} kr</p>
-              </div>
+              <hr class="line">
             </div>
-            <hr class="line">
-          </div>
+           </section>
           <hr>
           <div class="last-part">
             <p>Totalt spenderat</p> <p>{{totalSpent}} kr</p>
@@ -54,13 +55,11 @@ export default {
         let temp = localStorage.getItem('doneOrders')
         if (temp == undefined) return
         if (temp == '') return
-        let parsed = JSON.parse(temp)
-        console.log("temp " + parsed)
         return JSON.parse(temp)
       },
       totalSpent(){
         let totalprice = 0
-        let orders = this.$store.state.doneOrders
+        let orders = this.doneOrders
         orders.forEach(element => {
           totalprice += element.totalPrice
         });
@@ -182,7 +181,8 @@ export default {
   >h3 {
     justify-self: flex-start;
     align-self: flex-start;
-    margin-top: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     margin-left: 0rem;
   }
  > hr {
@@ -190,7 +190,10 @@ export default {
    height: 0px;
  }
 }
-
+.orders{
+  height: 15rem;
+  overflow: scroll;
+}
 .line {
   margin-top: 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);

@@ -46,15 +46,16 @@ export default new Vuex.Store({
 
     finishOrder(state, data){
       let tempDate = new Date()
-      let currentOrder = {eta: data.eta, orderNr: data.orderNr, totalPrice: state.totalPrice, date: `${tempDate.getFullYear()}/${(tempDate.getMonth()+1)}/${tempDate.getDate()}`}
+      let endDate = new Date()
+      endDate.setMinutes(endDate.getMinutes() + data.eta)
+      let currentOrder = {eta: data.eta, endEta: endDate, orderNr: data.orderNr, totalPrice: state.totalPrice, date: `${tempDate.getFullYear()}/${(tempDate.getMonth()+1)}/${tempDate.getDate()}`}
       state.currentOrder = currentOrder
       state.doneOrders.push(currentOrder)
       
       let temp = localStorage.getItem('doneOrders')
       let tempOrders = new Array
-      console.log("doneorders " + temp )
+
       if (temp != '' && temp != undefined) {
-        console.log("hello")
         tempOrders = [...JSON.parse(temp)]
       }
       tempOrders.push(currentOrder)

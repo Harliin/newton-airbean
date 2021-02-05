@@ -25,7 +25,6 @@ export default {
   }},
   computed:{
     Menu(){
-      console.log(this.$store.state.menu)
       return this.$store.state.menu
     }
   },

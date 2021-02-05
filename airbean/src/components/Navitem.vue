@@ -33,6 +33,7 @@ export default {
     justify-content: center;
     align-items: center;
     border: none;
+    outline: none;
 }
 .navitem {
     position: absolute;
