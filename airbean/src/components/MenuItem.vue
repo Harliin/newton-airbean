@@ -42,6 +42,7 @@ export default {
         justify-content: center;
         align-items: center;
         border: none;
+        outline: none;
 
         img{
             width: 12px;
