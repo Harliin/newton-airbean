@@ -3,8 +3,9 @@
       <p>Ordernummer <b>#{{status.orderNr}}</b></p>
       <img src="~@/assets/drone.svg" alt="kunde ej hitta bilden">
       <div class="info">
-        <h3>Din beställning är på väg!</h3>
-        <p><b>{{eta}}</b> minuter</p>
+        <h3 v-if="!delivered">Din beställning är på väg!</h3>
+        <h3 v-if="delivered">Din beställning har levererats!</h3>
+        <p v-if="!delivered"><b>{{eta}}</b> minuter</p>
       </div>
      
       <router-link to="/menu" class="button" tag="button">Ok, cool!</router-link>
@@ -15,7 +16,8 @@
 export default {
     data(){return{
         eta: 0,
-        interval: null
+        interval: null,
+        delivered: false
     }},
     computed:{
         status(){
@@ -27,6 +29,9 @@ export default {
             let date = new Date()
             let millisleft = this.status.endEta - date
             this.eta = Math.floor(millisleft / 60000)
+            if(this.eta <= 0){
+                this.delivered = true
+            }
         }
     },
     beforeMount(){
